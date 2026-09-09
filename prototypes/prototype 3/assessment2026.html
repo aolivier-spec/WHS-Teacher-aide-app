@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>School Timetable</title>
+	<!-- link to the style sheet -->
+	<link rel="stylesheet" href="teacher_aide_styles.css">
+	<!-- link to the java script file -->
+	<script src="teacher_aide_script.js" defer></script>
+    
+	
+<!-- ============================================================================================================================================================================================ -->
+	
+</head>
+<body>
+    
+	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsyuD73X55qKJdLes6YZ2DcglGLD0SLYFzrUNZ9YA4tMjWEnB3NKBYub82&s=10" alt="westland high school logo" class="center-block">
+	
+    <h1 class="centered-text"><u>General Teacher aide time table</u></h1>
+	
+	<button onclick="printTimetable()">
+    ️ Print Timetable
+    </button>
+
+    <table id="timetable">
+        <!-- Header Row: Days of the week -->
+        <tr>
+            <th>Period / Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+        </tr>
+
+        <!-- Row 1: Whanau -->
+        <tr>
+            <td class="day-column">Period 1<br></td>
+			
+            <td>
+                <a href="#" class="modal-link" onclick="openModal(); return false;">
+                   Whanau
+                </a>
+                <br>
+                <small>8:45 - 9:00</small>
+            </td>
+			
+            <td>Whanau<br><small>8:45 - 9:00</small></td>
+            <td>Class<br><small>8:45 - 9:45</small></td>
+            <td>Whanau<br><small>8:45 - 9:00</small></td>
+            <td>Whanau<br><small>8:45 - 9:00</small></td>
+        </tr>
+
+        <!-- Row 2: Period 1 -->
+        <tr>
+            <td class="day-column">Period 2<br></td>
+            <td>Class<br><small>9:00 - 10:00</small></td>
+            <td>Class<br><small>9:00 - 10:00</small></td>
+            <td>Class<br><small>9:45 - 10:45</small></td>
+            <td>Class<br><small>9:00 - 10:00</small></td>
+            <td>Class<br><small>9:00 - 10:00</small></td>
+        </tr>
+
+        <!-- Row 3: Period 2 -->
+        <tr>
+            <td class="day-column">Period 3<br></td>
+            <td>Class<br><small>10:00 - 11:00</small></td>
+            <td>Class<br><small>10:00 - 11:00</small></td>
+            <td>Assembly/Hapu meet<br><small>10:45 - 11:15</td>
+            <td>Class<br><small>10:00 - 11:00</small></td>
+            <td>Class<br><small>10:00 - 11:00</small></td>
+        </tr>
+
+        <!-- Recess/Break using colspan to put across all days -->
+        <tr>
+            <td class="day-column">Interval<br></td>
+            <td colspan="5" style="background-color: #e3f2fd; font-weight: bold; tracking-spacing: 2px;">Interval<br><small></td>
+        </tr>
+
+        <!-- Row 4: Period 3 -->
+        <tr>
+            <td class="day-column">Period 4<br></td>
+            <td>Class<br><small>11:20 - 12:20</small></td>
+            <td>Class<br><small>11:20 - 12:20</small></td>
+            <td>Class<br><small>11:35 - 12:30</small></td>
+            <td>Class<br><small>11:20 - 12:20</small></td>
+            <td>Class<br><small>11:20 - 12:20</small></td>
+        </tr>
+
+        <!-- Row 5: Period 4 -->
+        <tr>
+            <td class="day-column">Period 5<br></td>
+            <td>Class<br><small>12:20 - 13:20</small></td>
+            <td>Class<br><small>12:20 - 13:20</small></td>
+            <td>Class<br><small>12:30 - 13:20</small></td>
+            <td>Class<br><small>12:20 - 13:20</small></td>
+            <td>Class<br><small>12:20 - 13:20</small></td>
+        </tr>
+
+        <!-- Lunch Break use same colspan as interval line -->
+        <tr>
+            <td class="day-column">Lunch<br></td>
+            <td colspan="5" style="background-color: #e8f5e9; font-weight: bold;">LUNCH BREAK<br><small></td>
+        </tr>
+
+        <!-- Row 6: Period 5 -->
+        <tr>
+            <td class="day-column">Period 6<br></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+        </tr>
+    </table>
+	
+<!-- =================================================================================================================== -->
+	
+	<!-- Modal that opens list of classes with teachers -->
+<div id="whanauModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <h2>Whānau Classes</h2>
+		
+		<button onclick="printWhanauModal()">
+    ️     Print Whānau Classes
+        </button>
+		
+		<table>
+		
+		<!-- table with all whanau classes and teachers and room locations -->
+		    <tr>
+			<!-- Header row: all hapus in school -->
+			    <th style="background-color: #F2F2F2;">Hau</th>
+				
+				<th style="background-color: #D8F0D8;">Papatūānuku</th>
+				
+				<th style="background-color: #C9DEF5;">Wai</th>
+				
+				<th colspan="2" style="background-color: #E8AEAE;">Ahi</th>
+				
+			</tr>
+			
+			<tr>
+			<!-- year 13 all same room so make one continuous row -->
+			    <td colspan="5" style="background-color: #FFFBE8; font-weight: bold;">Year 13<br><small>TT Rm</small><br><small>Lynda Shanks</small></td>
+				
+			</tr>
+			
+			<!-- year 12 all whanau classes plus mentor classes -->
+			<tr>
+			
+			    <td class="clickable-whanau"
+				    style="background-color: #F2F2F2;"
+					onclick="openClassModal('12WHAU')">
+					
+				    <b>
+					    12WHAU
+					   <span id="star-12WHAU" class="scheduled-star"></span>
+					</b><br>
+					
+					<span id="aide-12WHAU"></span><br>
+					
+					<small>Music Rm</small><br>
+					<small>Michelle Hetherington</small>
+					
+				</td>
+				
+				<td style="background-color: #D8F0D8;"><b>12WPAPA</b><br><small>Rm 6</small><br><small>Siobhan O'Malley</small></td>
+				
+				<td style="background-color: #C9DEF5;"><b>12WWAI</b><br><small>Music Rm</small><br><small>Michelle Hetherington</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>12WAHI</b><br><small>Art Room</small><br><small>Philippa Mallinson</small></td>
+				
+				<td style="background-color: #FFFBE8;"><b>Mentors</b><br><small>Guidance Rm</small><br><small>Fiona Lauder</small></td>
+				
+			</tr>
+			
+			<!-- yr 11 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>11WHAU</b><br><small>Textiles Rm</small><br><small>Maryke Diplock</small></td>
+				
+				<td class="clickable-whanau"
+				    style="background-color: #D8F0D8;"
+					onclick="openClassModal('11WPAPA')">
+					
+					<b>
+					    11WPAPA
+						<span id="star-11WPAPA" class="scheduled-star"></span>
+					</b><br>
+					
+					<span id="aide-11WPAPA"></span><br>
+					
+					<small>Rm 7</small><br>
+					<small>Paolo Quilala</small>
+					
+				</td>
+				
+				<td style="background-color: #C9DEF5;"><b>11WWAI</b><br><small>Rm 9</small><br><small>Chris Collins</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>11WAHI</b><br><small>OE Rm</small><br><small>Mike Talbot</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+			<!-- yr 10 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>10WHAU</b><br><small>Rm 13</small><br><small>Vikashni Ram</small></td>
+				
+				<td style="background-color: #D8F0D8;"><b>10WPAPA</b><br><small>Rm 1</small><br><small>Janice Sadler</small></td>
+				
+				<td class="clickable-whanau"
+				    style="background-color: #C9DEF5;"
+					onclick="openClassModal('10WWAI')">
+					
+				    <b>
+					    10WWAI
+						<span id="star-10WWAI" class="scheduled-star"></span>
+					</b><br>
+					
+					<span id="aide-10WWAI"></span><br>
+					
+					<small>Rm 10</small><br>
+					<small>Johan Minaar</small>
+					
+				</td>
+				
+				<td style="background-color: #E8AEAE;"><b>10WAHI</b><br><small>Library</small><br><small>Kristy Veale</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+			<!-- yr 9 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>9WHAU</b><br><small>CW Rm</small><br><small>Vanessa Pringle</small></td>
+				
+				<td style="background-color: #D8F0D8;"><b>9WPAPA</b><br><small>GR Rm</small><br><small>Mohinesh Ram</small></td>
+				
+				<td style="background-color: #C9DEF5;"><b>9WWAI</b><br><small>Rm 5</small><br><small>Anna Pinkerton</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>9WAHI</b><br><small>Rm 4</small><br><small>Mariska Minaar</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+			<!-- yr 8 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>8WHAU</b><br><small>Rm 3</small><br><small>Shalendra Dutt</small></td>
+				
+				<td style="background-color: #D8F0D8;"><b>8WPAPA</b><br><small>Rm 12</small><br><small>Sonica Hilson</small></td>
+				
+				<td style="background-color: #C9DEF5;"><b>8WWAI</b><br><small>GW</small><br><small>Ben Tapper</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>8WAHI</b><br><small>Rm 15</small><br><small>Rachel Wastney</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+			<!-- yr 7 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>7WHAU</b><br><small>Rm 8</small><br><small>Gus Smith</small></td>
+				
+				<td style="background-color: #D8F0D8;"><b>7WPAPA</b><br><small>Rm 2</small><br><small>Kate Veale</small></td>
+				
+				<td style="background-color: #C9DEF5;"><b>7WWAI</b><br><small>Rm 14</small><br><small>Arleen Evasco</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>7WAHI</b><br><small>Rm 22</small><br><small>Brooke Parker</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+		</table>
+
+        
+    </div>
+</div>
+
+<!-- modal with class information after clicking on whanau class name -->
+
+<div id="classModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeClassModal()">&times;</span>
+
+        <h2 id="classTitle"></h2>
+		
+		<button onclick="printClassModal()">
+          Print Class
+        </button>
+
+        <div id="classAideDisplay"></div>
+
+        <div id="classContent">
+            Extra information goes here.<br>
+			blah blah blahh
+        </div>
+
+    </div>
+
+</div>
+<!-- modal inside of class modal where you can actaully click to schedule a teacher aide for class -->
+<div id="teacherAideModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeTeacherAideModal()">&times;</span>
+
+        <h2>Schedule Teacher Aide</h2>
+		
+		<button onclick="printTeacherAideModal()">
+         Print Teacher Aide Schedule
+        </button>
+
+        <p>
+            Select a teacher aide to schedule for:
+            <b id="teacherAideClassName"></b>
+        </p>
+
+        <div class="teacher-aide-list">
+
+            <button class="teacher-aide-button"
+                    onclick="scheduleTeacherAide('Teacher Aide 1')"
+                    style="background-color: #FFD1E4;">
+
+                <b>Teacher Aide 1</b>
+
+                <div id="schedule-Teacher-Aide-1"></div>
+
+            </button>
+
+            <button class="teacher-aide-button"
+                    onclick="scheduleTeacherAide('Teacher Aide 2')"
+                    style="background-color: #FFE8D1;">
+
+                <b>Teacher Aide 2</b>
+
+                <div id="schedule-Teacher-Aide-2"></div>
+
+            </button>
+
+
+            <button class="teacher-aide-button"
+                    onclick="scheduleTeacherAide('Teacher Aide 3')"
+                    style="background-color: #FFFDD1;">
+
+                <b>Teacher Aide 3</b>
+
+                <div id="schedule-Teacher-Aide-3"></div>
+
+            </button>
+
+
+            <button class="teacher-aide-button"
+                    onclick="scheduleTeacherAide('Teacher Aide 4')"
+                    style="background-color: #D1FFF4;">
+
+                <b>Teacher Aide 4</b>
+
+                <div id="schedule-Teacher-Aide-4"></div>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ======================================================================================================================= -->
+
+<!-- javascript to open modal window that shows information about teachers and periods when clicked on -->
+<!-- open up another window inside of the first modal that shows more detail on the class, and then opens up into another window for teacher aide scheduling -->
+
+
+
+
+</body>
+</html>
