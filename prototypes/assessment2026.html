@@ -4,9 +4,129 @@
 <head>
     <meta charset="UTF-8">
     <title>School Timetable</title>
-	<!-- link to the style sheet -->
-	<link rel="stylesheet" href="teacher_aide_styles.css">
-    
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+		
+        th, td {
+            border: 1px solid #111;
+            padding: 12px;
+        }
+		
+        th {
+            background-color: #f2f2f2;
+        }
+		
+        .day-column {
+            font-weight: bold;
+            background-color: #fafafa;
+        }
+		
+		.centered-text {
+		    text-align: center;
+		}
+		
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+		
+        #classModal{
+            z-index: 2000;
+        }
+
+        .clickable-whanau{
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .clickable-whanau:hover{
+            filter: brightness(90%);
+            text-decoration: underline;
+        }
+
+        .modal-content {
+            background: white;
+            width: max-content;
+            max-width: 90%;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-link {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+			transition: color 0.2s ease;
+        }
+		
+		.modal-link:hover {
+		    color: blue;
+			text-decoration: underline;
+		}
+		
+		.center-block {
+            display: block;    
+            margin-left: auto;  
+            margin-right: auto;
+            width: 20%;         
+        }
+		
+		
+        #teacherAideModal {
+            z-index: 3000;
+        }
+
+        .teacher-aide-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .teacher-aide-button {
+            padding: 10px 15px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .teacher-aide-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .scheduled-star {
+           color: #F5C22F;
+           font-size: 18px;
+           margin-left: 4px;
+        }
+
+		
+    </style>
 	
 <!-- ============================================================================================================================================================================================ -->
 	
@@ -15,13 +135,9 @@
     
 	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsyuD73X55qKJdLes6YZ2DcglGLD0SLYFzrUNZ9YA4tMjWEnB3NKBYub82&s=10" alt="westland high school logo" class="center-block">
 	
-    <h1 class="centered-text"><u>General Teacher aide time table</u></h1>
-	
-	<button onclick="printTimetable()">
-    ️ Print Timetable
-    </button>
+    <h1 class="centered-text"><u>Teacher aide time table</u></h1>
 
-    <table id="timetable">
+    <table>
         <!-- Header Row: Days of the week -->
         <tr>
             <th>Period / Time</th>
@@ -122,21 +238,14 @@
 
         <h2>Whānau Classes</h2>
 		
-		<button onclick="printWhanauModal()">
-    ️     Print Whānau Classes
-        </button>
-		
 		<table>
 		
 		<!-- table with all whanau classes and teachers and room locations -->
 		    <tr>
 			<!-- Header row: all hapus in school -->
 			    <th style="background-color: #F2F2F2;">Hau</th>
-				
 				<th style="background-color: #D8F0D8;">Papatūānuku</th>
-				
 				<th style="background-color: #C9DEF5;">Wai</th>
-				
 				<th colspan="2" style="background-color: #E8AEAE;">Ahi</th>
 				
 			</tr>
@@ -158,9 +267,6 @@
 					    12WHAU
 					   <span id="star-12WHAU" class="scheduled-star"></span>
 					</b><br>
-					
-					<span id="aide-12WHAU"></span><br>
-					
 					<small>Music Rm</small><br>
 					<small>Michelle Hetherington</small>
 					
@@ -188,9 +294,6 @@
 					    11WPAPA
 						<span id="star-11WPAPA" class="scheduled-star"></span>
 					</b><br>
-					
-					<span id="aide-11WPAPA"></span><br>
-					
 					<small>Rm 7</small><br>
 					<small>Paolo Quilala</small>
 					
@@ -218,9 +321,6 @@
 					    10WWAI
 						<span id="star-10WWAI" class="scheduled-star"></span>
 					</b><br>
-					
-					<span id="aide-10WWAI"></span><br>
-					
 					<small>Rm 10</small><br>
 					<small>Johan Minaar</small>
 					
@@ -289,12 +389,6 @@
         <span class="close" onclick="closeClassModal()">&times;</span>
 
         <h2 id="classTitle"></h2>
-		
-		<button onclick="printClassModal()">
-          Print Class
-        </button>
-
-        <div id="classAideDisplay"></div>
 
         <div id="classContent">
             Extra information goes here.<br>
@@ -312,10 +406,6 @@
         <span class="close" onclick="closeTeacherAideModal()">&times;</span>
 
         <h2>Schedule Teacher Aide</h2>
-		
-		<button onclick="printTeacherAideModal()">
-         Print Teacher Aide Schedule
-        </button>
 
         <p>
             Select a teacher aide to schedule for:
@@ -421,41 +511,6 @@ function openModal() {
     document.getElementById("whanauModal").style.display = "block";
 
     updateClassStars();
-	
-	updateClassAideNames();
-
-
-}
-
-function updateClassAideNames() {
-
-    const classes = [
-        "12WHAU",
-        "11WPAPA",
-        "10WWAI"
-    ];
-
-    classes.forEach(function(className) {
-
-        const aideDisplay =
-            document.getElementById("aide-" + className);
-
-        if (aideDisplay) {
-
-            if (scheduledTeacherAides[className]) {
-
-                aideDisplay.innerHTML =
-                    `<small><b>${scheduledTeacherAides[className]}</b></small>`;
-
-            } else {
-
-                aideDisplay.innerHTML = "";
-
-            }
-
-        }
-
-    });
 
 }
 
@@ -471,43 +526,17 @@ function closeModal() {
 
 function openClassModal(className) {
 
-    /* Get the class title */
     document.getElementById("classTitle").innerHTML = className;
 
-
-    /* Get the teacher aide assigned to this class */
-    let assignedAide = scheduledTeacherAides[className];
-
-
-    /* Display the teacher aide underneath the class name */
-    const aideDisplay =
-        document.getElementById("classAideDisplay");
-
-
-    if (assignedAide) {
-
-        aideDisplay.innerHTML = `
-            <div class="class-modal-aide">
-                <span class="scheduled-star">★</span>
-                <span class="class-modal-aide-name">
-                    ${assignedAide}
-                </span>
-            </div>
-        `;
-
-    } else {
-
-        aideDisplay.innerHTML = "";
-
-    }
-
-
     let info = "";
+
+    let assignedAide = scheduledTeacherAides[className];
 
     let aideInformation = "";
 
 
-    /* If teacher aide is assigned, show their name and remove button */
+    /*If teacher aide is assigned, show their name and the remove button.*/
+
     if (assignedAide) {
 
         aideInformation = `
@@ -533,7 +562,7 @@ function openClassModal(className) {
     }
 
 
-    /* Class information */
+    /*class information*/
 
     switch(className) {
 
@@ -929,10 +958,9 @@ function scheduleTeacherAide(teacherAideName) {
     ] = teacherAideName;
 
 
-    /*Update star icon and teacher aide name*/
+    /*Update star icon*/
 
     updateClassStars();
-	updateClassAideNames();
 
 
     /*Close teacher aide modal*/
@@ -998,10 +1026,9 @@ function removeTeacherAide(className) {
     delete scheduledTeacherAides[className];
 
 
-    /*Update the star icon and teacher aide name next to class name*/
+    /*Update the star icon next to class name*/
 
     updateClassStars();
-	updateClassAideNames();
 
 
     /* Refresh the class modal*/
@@ -1105,65 +1132,6 @@ window.onclick = function(event) {
 
 };
 
-
-/* Print the main timetable */
-
-function printTimetable() {
-
-    const timetable =
-        document.getElementById("timetable");
-
-    timetable.classList.add("print-area");
-
-    window.print();
-
-    timetable.classList.remove("print-area");
-}
-
-
-/* Print the Whānau/classes modal */
-
-function printWhanauModal() {
-
-    const modalContent =
-        document.querySelector("#whanauModal .modal-content");
-
-    modalContent.classList.add("print-area");
-
-    window.print();
-
-    modalContent.classList.remove("print-area");
-}
-
-
-/* Print the currently open class modal */
-
-function printClassModal() {
-
-    const modalContent =
-        document.querySelector("#classModal .modal-content");
-
-    modalContent.classList.add("print-area");
-
-    window.print();
-
-    modalContent.classList.remove("print-area");
-}
-
-
-/* Print the teacher aide modal */
-
-function printTeacherAideModal() {
-
-    const modalContent =
-        document.querySelector("#teacherAideModal .modal-content");
-
-    modalContent.classList.add("print-area");
-
-    window.print();
-
-    modalContent.classList.remove("print-area");
-}
 </script>
 
 </body>
