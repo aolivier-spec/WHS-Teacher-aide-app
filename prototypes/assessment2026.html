@@ -1,0 +1,1170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>School Timetable</title>
+	<!-- link to the style sheet -->
+	<link rel="stylesheet" href="teacher_aide_styles.css">
+    
+	
+<!-- ============================================================================================================================================================================================ -->
+	
+</head>
+<body>
+    
+	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsyuD73X55qKJdLes6YZ2DcglGLD0SLYFzrUNZ9YA4tMjWEnB3NKBYub82&s=10" alt="westland high school logo" class="center-block">
+	
+    <h1 class="centered-text"><u>General Teacher aide time table</u></h1>
+	
+	<button onclick="printTimetable()">
+    ️ Print Timetable
+    </button>
+
+    <table id="timetable">
+        <!-- Header Row: Days of the week -->
+        <tr>
+            <th>Period / Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+        </tr>
+
+        <!-- Row 1: Whanau -->
+        <tr>
+            <td class="day-column">Period 1<br></td>
+			
+            <td>
+                <a href="#" class="modal-link" onclick="openModal(); return false;">
+                   Whanau
+                </a>
+                <br>
+                <small>8:45 - 9:00</small>
+            </td>
+			
+            <td>Whanau<br><small>8:45 - 9:00</small></td>
+            <td>Class<br><small>8:45 - 9:45</small></td>
+            <td>Whanau<br><small>8:45 - 9:00</small></td>
+            <td>Whanau<br><small>8:45 - 9:00</small></td>
+        </tr>
+
+        <!-- Row 2: Period 1 -->
+        <tr>
+            <td class="day-column">Period 2<br></td>
+            <td>Class<br><small>9:00 - 10:00</small></td>
+            <td>Class<br><small>9:00 - 10:00</small></td>
+            <td>Class<br><small>9:45 - 10:45</small></td>
+            <td>Class<br><small>9:00 - 10:00</small></td>
+            <td>Class<br><small>9:00 - 10:00</small></td>
+        </tr>
+
+        <!-- Row 3: Period 2 -->
+        <tr>
+            <td class="day-column">Period 3<br></td>
+            <td>Class<br><small>10:00 - 11:00</small></td>
+            <td>Class<br><small>10:00 - 11:00</small></td>
+            <td>Assembly/Hapu meet<br><small>10:45 - 11:15</td>
+            <td>Class<br><small>10:00 - 11:00</small></td>
+            <td>Class<br><small>10:00 - 11:00</small></td>
+        </tr>
+
+        <!-- Recess/Break using colspan to put across all days -->
+        <tr>
+            <td class="day-column">Interval<br></td>
+            <td colspan="5" style="background-color: #e3f2fd; font-weight: bold; tracking-spacing: 2px;">Interval<br><small></td>
+        </tr>
+
+        <!-- Row 4: Period 3 -->
+        <tr>
+            <td class="day-column">Period 4<br></td>
+            <td>Class<br><small>11:20 - 12:20</small></td>
+            <td>Class<br><small>11:20 - 12:20</small></td>
+            <td>Class<br><small>11:35 - 12:30</small></td>
+            <td>Class<br><small>11:20 - 12:20</small></td>
+            <td>Class<br><small>11:20 - 12:20</small></td>
+        </tr>
+
+        <!-- Row 5: Period 4 -->
+        <tr>
+            <td class="day-column">Period 5<br></td>
+            <td>Class<br><small>12:20 - 13:20</small></td>
+            <td>Class<br><small>12:20 - 13:20</small></td>
+            <td>Class<br><small>12:30 - 13:20</small></td>
+            <td>Class<br><small>12:20 - 13:20</small></td>
+            <td>Class<br><small>12:20 - 13:20</small></td>
+        </tr>
+
+        <!-- Lunch Break use same colspan as interval line -->
+        <tr>
+            <td class="day-column">Lunch<br></td>
+            <td colspan="5" style="background-color: #e8f5e9; font-weight: bold;">LUNCH BREAK<br><small></td>
+        </tr>
+
+        <!-- Row 6: Period 5 -->
+        <tr>
+            <td class="day-column">Period 6<br></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+        </tr>
+    </table>
+	
+<!-- =================================================================================================================== -->
+	
+	<!-- Modal that opens list of classes with teachers -->
+<div id="whanauModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <h2>Whānau Classes</h2>
+		
+		<button onclick="printWhanauModal()">
+    ️     Print Whānau Classes
+        </button>
+		
+		<table>
+		
+		<!-- table with all whanau classes and teachers and room locations -->
+		    <tr>
+			<!-- Header row: all hapus in school -->
+			    <th style="background-color: #F2F2F2;">Hau</th>
+				
+				<th style="background-color: #D8F0D8;">Papatūānuku</th>
+				
+				<th style="background-color: #C9DEF5;">Wai</th>
+				
+				<th colspan="2" style="background-color: #E8AEAE;">Ahi</th>
+				
+			</tr>
+			
+			<tr>
+			<!-- year 13 all same room so make one continuous row -->
+			    <td colspan="5" style="background-color: #FFFBE8; font-weight: bold;">Year 13<br><small>TT Rm</small><br><small>Lynda Shanks</small></td>
+				
+			</tr>
+			
+			<!-- year 12 all whanau classes plus mentor classes -->
+			<tr>
+			
+			    <td class="clickable-whanau"
+				    style="background-color: #F2F2F2;"
+					onclick="openClassModal('12WHAU')">
+					
+				    <b>
+					    12WHAU
+					   <span id="star-12WHAU" class="scheduled-star"></span>
+					</b><br>
+					
+					<span id="aide-12WHAU"></span><br>
+					
+					<small>Music Rm</small><br>
+					<small>Michelle Hetherington</small>
+					
+				</td>
+				
+				<td style="background-color: #D8F0D8;"><b>12WPAPA</b><br><small>Rm 6</small><br><small>Siobhan O'Malley</small></td>
+				
+				<td style="background-color: #C9DEF5;"><b>12WWAI</b><br><small>Music Rm</small><br><small>Michelle Hetherington</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>12WAHI</b><br><small>Art Room</small><br><small>Philippa Mallinson</small></td>
+				
+				<td style="background-color: #FFFBE8;"><b>Mentors</b><br><small>Guidance Rm</small><br><small>Fiona Lauder</small></td>
+				
+			</tr>
+			
+			<!-- yr 11 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>11WHAU</b><br><small>Textiles Rm</small><br><small>Maryke Diplock</small></td>
+				
+				<td class="clickable-whanau"
+				    style="background-color: #D8F0D8;"
+					onclick="openClassModal('11WPAPA')">
+					
+					<b>
+					    11WPAPA
+						<span id="star-11WPAPA" class="scheduled-star"></span>
+					</b><br>
+					
+					<span id="aide-11WPAPA"></span><br>
+					
+					<small>Rm 7</small><br>
+					<small>Paolo Quilala</small>
+					
+				</td>
+				
+				<td style="background-color: #C9DEF5;"><b>11WWAI</b><br><small>Rm 9</small><br><small>Chris Collins</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>11WAHI</b><br><small>OE Rm</small><br><small>Mike Talbot</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+			<!-- yr 10 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>10WHAU</b><br><small>Rm 13</small><br><small>Vikashni Ram</small></td>
+				
+				<td style="background-color: #D8F0D8;"><b>10WPAPA</b><br><small>Rm 1</small><br><small>Janice Sadler</small></td>
+				
+				<td class="clickable-whanau"
+				    style="background-color: #C9DEF5;"
+					onclick="openClassModal('10WWAI')">
+					
+				    <b>
+					    10WWAI
+						<span id="star-10WWAI" class="scheduled-star"></span>
+					</b><br>
+					
+					<span id="aide-10WWAI"></span><br>
+					
+					<small>Rm 10</small><br>
+					<small>Johan Minaar</small>
+					
+				</td>
+				
+				<td style="background-color: #E8AEAE;"><b>10WAHI</b><br><small>Library</small><br><small>Kristy Veale</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+			<!-- yr 9 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>9WHAU</b><br><small>CW Rm</small><br><small>Vanessa Pringle</small></td>
+				
+				<td style="background-color: #D8F0D8;"><b>9WPAPA</b><br><small>GR Rm</small><br><small>Mohinesh Ram</small></td>
+				
+				<td style="background-color: #C9DEF5;"><b>9WWAI</b><br><small>Rm 5</small><br><small>Anna Pinkerton</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>9WAHI</b><br><small>Rm 4</small><br><small>Mariska Minaar</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+			<!-- yr 8 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>8WHAU</b><br><small>Rm 3</small><br><small>Shalendra Dutt</small></td>
+				
+				<td style="background-color: #D8F0D8;"><b>8WPAPA</b><br><small>Rm 12</small><br><small>Sonica Hilson</small></td>
+				
+				<td style="background-color: #C9DEF5;"><b>8WWAI</b><br><small>GW</small><br><small>Ben Tapper</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>8WAHI</b><br><small>Rm 15</small><br><small>Rachel Wastney</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+			<!-- yr 7 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>7WHAU</b><br><small>Rm 8</small><br><small>Gus Smith</small></td>
+				
+				<td style="background-color: #D8F0D8;"><b>7WPAPA</b><br><small>Rm 2</small><br><small>Kate Veale</small></td>
+				
+				<td style="background-color: #C9DEF5;"><b>7WWAI</b><br><small>Rm 14</small><br><small>Arleen Evasco</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>7WAHI</b><br><small>Rm 22</small><br><small>Brooke Parker</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+		</table>
+
+        
+    </div>
+</div>
+
+<!-- modal with class information after clicking on whanau class name -->
+
+<div id="classModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeClassModal()">&times;</span>
+
+        <h2 id="classTitle"></h2>
+		
+		<button onclick="printClassModal()">
+          Print Class
+        </button>
+
+        <div id="classAideDisplay"></div>
+
+        <div id="classContent">
+            Extra information goes here.<br>
+			blah blah blahh
+        </div>
+
+    </div>
+
+</div>
+<!-- modal inside of class modal where you can actaully click to schedule a teacher aide for class -->
+<div id="teacherAideModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeTeacherAideModal()">&times;</span>
+
+        <h2>Schedule Teacher Aide</h2>
+		
+		<button onclick="printTeacherAideModal()">
+         Print Teacher Aide Schedule
+        </button>
+
+        <p>
+            Select a teacher aide to schedule for:
+            <b id="teacherAideClassName"></b>
+        </p>
+
+        <div class="teacher-aide-list">
+
+            <button class="teacher-aide-button"
+                    onclick="scheduleTeacherAide('Teacher Aide 1')"
+                    style="background-color: #FFD1E4;">
+
+                <b>Teacher Aide 1</b>
+
+                <div id="schedule-Teacher-Aide-1"></div>
+
+            </button>
+
+            <button class="teacher-aide-button"
+                    onclick="scheduleTeacherAide('Teacher Aide 2')"
+                    style="background-color: #FFE8D1;">
+
+                <b>Teacher Aide 2</b>
+
+                <div id="schedule-Teacher-Aide-2"></div>
+
+            </button>
+
+
+            <button class="teacher-aide-button"
+                    onclick="scheduleTeacherAide('Teacher Aide 3')"
+                    style="background-color: #FFFDD1;">
+
+                <b>Teacher Aide 3</b>
+
+                <div id="schedule-Teacher-Aide-3"></div>
+
+            </button>
+
+
+            <button class="teacher-aide-button"
+                    onclick="scheduleTeacherAide('Teacher Aide 4')"
+                    style="background-color: #D1FFF4;">
+
+                <b>Teacher Aide 4</b>
+
+                <div id="schedule-Teacher-Aide-4"></div>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ======================================================================================================================= -->
+
+<!-- javascript to open modal window that shows information about teachers and periods when clicked on -->
+<!-- open up another window inside of the first modal that shows more detail on the class, and then opens up into another window for teacher aide scheduling -->
+<script>
+
+/* teacher aide data */
+
+/*Each class stores its assigned teacher aide.*/
+
+let scheduledTeacherAides = {};
+
+let currentClassForAide = "";
+
+
+/* information for class schedule */
+
+/*This is where the day, period and time for each class is stored.
+Add more classes here with making more class modals.*/
+
+const classSchedule = {
+
+    "12WHAU": {
+        day: "Monday",
+        period: "Period 1",
+        time: "8:45 - 9:00"
+    },
+
+    "11WPAPA": {
+        day: "Monday",
+        period: "Period 1",
+        time: "8:45 - 9:00"
+    },
+
+    "10WWAI": {
+        day: "Monday",
+        period: "Period 1",
+        time: "8:45 - 9:00"
+    }
+
+};
+
+
+/* whanau modal window */
+
+function openModal() {
+
+    document.getElementById("whanauModal").style.display = "block";
+
+    updateClassStars();
+	
+	updateClassAideNames();
+
+
+}
+
+function updateClassAideNames() {
+
+    const classes = [
+        "12WHAU",
+        "11WPAPA",
+        "10WWAI"
+    ];
+
+    classes.forEach(function(className) {
+
+        const aideDisplay =
+            document.getElementById("aide-" + className);
+
+        if (aideDisplay) {
+
+            if (scheduledTeacherAides[className]) {
+
+                aideDisplay.innerHTML =
+                    `<small><b>${scheduledTeacherAides[className]}</b></small>`;
+
+            } else {
+
+                aideDisplay.innerHTML = "";
+
+            }
+
+        }
+
+    });
+
+}
+
+
+function closeModal() {
+
+    document.getElementById("whanauModal").style.display = "none";
+
+}
+
+
+/* class modal */
+
+function openClassModal(className) {
+
+    /* Get the class title */
+    document.getElementById("classTitle").innerHTML = className;
+
+
+    /* Get the teacher aide assigned to this class */
+    let assignedAide = scheduledTeacherAides[className];
+
+
+    /* Display the teacher aide underneath the class name */
+    const aideDisplay =
+        document.getElementById("classAideDisplay");
+
+
+    if (assignedAide) {
+
+        aideDisplay.innerHTML = `
+            <div class="class-modal-aide">
+                <span class="scheduled-star">★</span>
+                <span class="class-modal-aide-name">
+                    ${assignedAide}
+                </span>
+            </div>
+        `;
+
+    } else {
+
+        aideDisplay.innerHTML = "";
+
+    }
+
+
+    let info = "";
+
+    let aideInformation = "";
+
+
+    /* If teacher aide is assigned, show their name and remove button */
+    if (assignedAide) {
+
+        aideInformation = `
+            <br>
+
+            <b>Teacher Aide:</b> ${assignedAide}
+
+            <br><br>
+
+            <button onclick="removeTeacherAide('${className}')">
+                Remove Teacher Aide
+            </button>
+        `;
+
+    } else {
+
+        aideInformation = `
+            <br>
+
+            <b>Teacher Aide:</b> None scheduled
+        `;
+
+    }
+
+
+    /* Class information */
+
+    switch(className) {
+
+        case "12WHAU":
+
+            info = `
+                <b>Teacher:</b> Michelle Hetherington<br>
+
+                <b>Room:</b> Music Room<br>
+
+                <b>Extra information:</b>
+                Add anything here....
+
+                ${aideInformation}
+
+                <br><br>
+
+                <button onclick="openTeacherAideModal('${className}')">
+                    <b>Teacher Aide</b>
+                </button>
+            `;
+
+            break;
+
+
+        case "11WPAPA":
+
+            info = `
+                <b>Teacher:</b> Paolo Quilala<br>
+
+                <b>Room:</b> Room 7<br>
+
+                <b>Extra information:</b>
+                Add anything here....
+
+                ${aideInformation}
+
+                <br><br>
+
+                <button onclick="openTeacherAideModal('${className}')">
+                    <b>Teacher Aide</b>
+                </button>
+            `;
+
+            break;
+
+
+        case "10WWAI":
+
+            info = `
+                <b>Teacher:</b> Johan Minaar<br>
+
+                <b>Room:</b> Room 10<br>
+
+                <b>Extra information:</b>
+                Add anything here....
+
+                ${aideInformation}
+
+                <br><br>
+
+                <button onclick="openTeacherAideModal('${className}')">
+                    <b>Teacher Aide</b>
+                </button>
+            `;
+
+            break;
+
+
+        default:
+
+            info = "No information has been added yet.";
+
+    }
+
+
+    document.getElementById("classContent").innerHTML = info;
+
+    document.getElementById("classModal").style.display = "block";
+
+}
+
+
+function closeClassModal() {
+
+    document.getElementById("classModal").style.display = "none";
+
+}
+
+
+/* teacher aide modal window */
+
+function openTeacherAideModal(className) {
+
+    /*Remember which class a teacher aide is already scheduled for*/
+
+    currentClassForAide = className;
+
+
+    /*Display the class name of the scheduled class*/
+
+    document.getElementById(
+        "teacherAideClassName"
+    ).innerHTML = className;
+
+
+    /*Update the schedule information for every teacher aide.*/
+
+    updateTeacherAideScheduleDisplay();
+
+
+    /*Open the modal*/
+
+    document.getElementById(
+        "teacherAideModal"
+    ).style.display = "block";
+
+}
+
+
+function closeTeacherAideModal() {
+
+    document.getElementById(
+        "teacherAideModal"
+    ).style.display = "none";
+
+}
+
+
+/* find assigned classes of the teacher aides */
+
+/*This function finds every class a particular teacher aide is assigned to.*/
+
+function getTeacherAideAssignments(teacherAideName) {
+
+    let assignments = [];
+
+
+    for (let className in scheduledTeacherAides) {
+
+        if (
+            scheduledTeacherAides[className] ===
+            teacherAideName
+        ) {
+
+            assignments.push({
+
+                className: className,
+
+                day: classSchedule[className].day,
+
+                period: classSchedule[className].period,
+
+                time: classSchedule[className].time
+
+            });
+
+        }
+
+    }
+
+
+    return assignments;
+
+}
+
+
+/* display teacher aide schedules */
+
+/* updates the teacher aide buttons. It will show where and when each aide is already scheduled.*/
+
+function updateTeacherAideScheduleDisplay() {
+
+    const teacherAides = [
+
+        "Teacher Aide 1",
+
+        "Teacher Aide 2",
+
+        "Teacher Aide 3",
+
+        "Teacher Aide 4"
+
+    ];
+
+
+    teacherAides.forEach(function(teacherAideName) {
+
+        let assignments =
+            getTeacherAideAssignments(
+                teacherAideName
+            );
+
+
+        let scheduleText = "";
+
+
+        /*If the teacher aide has been assigned somewhere, display it.*/
+
+        if (assignments.length > 0) {
+
+            scheduleText =
+                "<br><small><b>Currently scheduled:</b>";
+
+            assignments.forEach(function(assignment) {
+
+                scheduleText += `
+
+                    <br>
+                    • ${assignment.className}
+
+                    — ${assignment.day}
+
+                    — ${assignment.period}
+
+                    — ${assignment.time}
+
+                `;
+
+            });
+
+            scheduleText += "</small>";
+
+        } else {
+
+            scheduleText =
+                "<br><small>Available</small>";
+
+        }
+
+
+        /*Find the schedule display area*/
+
+        const display =
+            document.getElementById(
+
+                "schedule-" +
+
+                teacherAideName
+                    .replaceAll(" ", "-")
+
+            );
+
+
+        if (display) {
+
+            display.innerHTML =
+                scheduleText;
+
+        }
+
+    });
+
+}
+
+
+/* check how busy a teacher aide is */
+
+/*This checks whether a teacher aide is already assigned to another class at the same day and period.*/
+
+function isTeacherAideBusy(
+
+    teacherAideName,
+
+    className
+
+) {
+
+    const newClassSchedule =
+        classSchedule[className];
+
+
+    for (
+
+        let scheduledClass
+
+        in
+
+        scheduledTeacherAides
+
+    ) {
+
+
+        if (
+
+            scheduledTeacherAides[
+                scheduledClass
+            ] === teacherAideName
+
+        ) {
+
+
+            const existingSchedule =
+                classSchedule[
+                    scheduledClass
+                ];
+
+
+            /*Check if both classes happen at the same day and period.*/
+
+            if (
+
+                existingSchedule.day ===
+                newClassSchedule.day
+
+                &&
+
+                existingSchedule.period ===
+                newClassSchedule.period
+
+            ) {
+
+                return scheduledClass;
+
+            }
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* schedule a teacher aide */
+
+function scheduleTeacherAide(teacherAideName) {
+
+
+    if (!currentClassForAide) {
+
+        return;
+
+    }
+
+
+    /* Check if teacher aide is already busy.*/
+
+    const conflictingClass =
+        isTeacherAideBusy(
+
+            teacherAideName,
+
+            currentClassForAide
+
+        );
+
+
+    /*If they are busy, show a warning.*/
+
+    if (conflictingClass) {
+
+        const conflict =
+            classSchedule[conflictingClass];
+
+
+        alert(
+
+            teacherAideName +
+
+            " is already scheduled for " +
+
+            conflictingClass +
+
+            " on " +
+
+            conflict.day +
+
+            ", " +
+
+            conflict.period +
+
+            " (" +
+
+            conflict.time +
+
+            ")."
+
+        );
+
+
+        return;
+
+    }
+
+
+    /*Assign the teacher aide*/
+
+    scheduledTeacherAides[
+        currentClassForAide
+    ] = teacherAideName;
+
+
+    /*Update star icon and teacher aide name*/
+
+    updateClassStars();
+	updateClassAideNames();
+
+
+    /*Close teacher aide modal*/
+
+    closeTeacherAideModal();
+
+
+    /*Re-open/update the class modal*/
+
+    openClassModal(
+        currentClassForAide
+    );
+
+}
+
+
+/* remove teacher aide */
+
+/*This removes the teacher aide from a particular class.*/
+
+function removeTeacherAide(className) {
+
+    /*Check that the class actually has an aide.*/
+
+    if (!scheduledTeacherAides[className]) {
+
+        return;
+
+    }
+
+
+    const teacherAideName =
+        scheduledTeacherAides[className];
+
+
+    /*Ask for confirmation to remove the teacher aide or not.*/
+
+    const confirmRemoval =
+        confirm(
+
+            "Remove " +
+
+            teacherAideName +
+
+            " from " +
+
+            className +
+
+            "?"
+
+        );
+
+
+    if (!confirmRemoval) {
+
+        return;
+
+    }
+
+
+    /*Remove the assigned class*/
+
+    delete scheduledTeacherAides[className];
+
+
+    /*Update the star icon and teacher aide name next to class name*/
+
+    updateClassStars();
+	updateClassAideNames();
+
+
+    /* Refresh the class modal*/
+
+    openClassModal(className);
+
+}
+
+
+/*update star icons */
+
+function updateClassStars() {
+
+    const classes = [
+
+        "12WHAU",
+
+        "11WPAPA",
+
+        "10WWAI"
+
+    ];
+
+
+    classes.forEach(function(className) {
+
+        const star =
+            document.getElementById(
+
+                "star-" + className
+
+            );
+
+
+        if (star) {
+
+            if (
+
+                scheduledTeacherAides[className]
+
+            ) {
+
+                star.innerHTML = "★";
+
+            }
+
+            else {
+
+                star.innerHTML = "";
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/*close modals when clicking outside of window area*/
+
+window.onclick = function(event) {
+
+    const whanauModal =
+        document.getElementById(
+            "whanauModal"
+        );
+
+
+    const classModal =
+        document.getElementById(
+            "classModal"
+        );
+
+
+    const teacherAideModal =
+        document.getElementById(
+            "teacherAideModal"
+        );
+
+
+    if (event.target === classModal) {
+
+        classModal.style.display = "none";
+
+    }
+
+
+    if (event.target === whanauModal) {
+
+        whanauModal.style.display = "none";
+
+    }
+
+
+    if (event.target === teacherAideModal) {
+
+        teacherAideModal.style.display = "none";
+
+    }
+
+};
+
+
+/* Print the main timetable */
+
+function printTimetable() {
+
+    const timetable =
+        document.getElementById("timetable");
+
+    timetable.classList.add("print-area");
+
+    window.print();
+
+    timetable.classList.remove("print-area");
+}
+
+
+/* Print the Whānau/classes modal */
+
+function printWhanauModal() {
+
+    const modalContent =
+        document.querySelector("#whanauModal .modal-content");
+
+    modalContent.classList.add("print-area");
+
+    window.print();
+
+    modalContent.classList.remove("print-area");
+}
+
+
+/* Print the currently open class modal */
+
+function printClassModal() {
+
+    const modalContent =
+        document.querySelector("#classModal .modal-content");
+
+    modalContent.classList.add("print-area");
+
+    window.print();
+
+    modalContent.classList.remove("print-area");
+}
+
+
+/* Print the teacher aide modal */
+
+function printTeacherAideModal() {
+
+    const modalContent =
+        document.querySelector("#teacherAideModal .modal-content");
+
+    modalContent.classList.add("print-area");
+
+    window.print();
+
+    modalContent.classList.remove("print-area");
+}
+</script>
+
+</body>
+</html>
