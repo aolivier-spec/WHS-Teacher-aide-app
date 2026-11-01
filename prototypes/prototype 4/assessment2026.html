@@ -1,0 +1,966 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>School Timetable</title>
+	<!-- link to the style sheet -->
+	<link rel="stylesheet" href="teacher_aide_styles.css">
+	<!-- link to the java script file -->
+	<script src="teacher_aide_script.js" defer></script>
+    
+	
+<!-- ============================================================================================================================================================================================ -->
+	
+</head>
+<body>
+
+<!-- TEACHER AIDE MANAGEMENT SYSTEM - DASHBOARD -->
+
+<div id="homePage" class="home-page">
+
+    <div class="dashboard-layout">
+
+        <!-- SIDEBAR  -->
+
+        <aside class="dashboard-sidebar">
+
+            <div class="sidebar-header">
+
+                <div class="sidebar-logo">
+                    ✎ᝰ.
+                </div>
+
+                <div class="sidebar-title">
+                    Teacher Aide
+                    <br>
+                    Management
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-menu">
+
+
+                <button
+                    class="sidebar-button active"
+                    onclick="showDashboardHome()">
+
+                    <span>合</span>
+
+                    <span>Dashboard</span>
+
+                </button>
+
+
+                <button
+                    class="sidebar-button"
+                    onclick="showTimetablePage()">
+
+                    <span>🗓</span>
+
+                    <span>General Timetable</span>
+
+                </button>
+
+
+                <button
+                    class="sidebar-button"
+                    onclick="openSearchFromHome()">
+
+                    <span>⌕</span>
+
+                    <span>Search Schedule</span>
+
+                </button>
+
+
+                <button
+                    class="sidebar-button"
+                    onclick="openTeacherAideDirectory()">
+
+                    <span>𐀪𐀪𐀪</span>
+
+                    <span>Teacher Aides</span>
+
+                </button>
+
+
+                <button
+                    class="sidebar-button"
+                    onclick="openSystemInformation()">
+
+                    <span>ⓘ</span>
+
+                    <span>System Information</span>
+
+                </button>
+
+
+            </div>
+
+
+            <div class="sidebar-footer">
+
+                <div class="system-status">
+
+                    <span class="status-dot"></span>
+
+                    System Online
+
+                </div>
+
+                <small>
+                    Teacher Aide Database
+                </small>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN DASHBOARD  -->
+
+        <main class="dashboard-main">
+
+
+            <!-- Dashboard header -->
+
+            <div class="dashboard-header">
+
+                <div>
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+                    <p>
+                        Teacher Aide Management System
+                    </p>
+
+                </div>
+
+
+                <div class="dashboard-date">
+
+                    <span>
+                        ⏱
+                    </span>
+
+                    Schedule Overview
+
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS   -->
+
+
+            <div class="dashboard-stat-grid">
+
+
+                <!-- Teacher aides -->
+
+                <div class="dashboard-stat-card">
+
+                    <div class="stat-icon">
+                        𐀪𐀪𐀪
+                    </div>
+
+                    <div>
+
+                        <div
+                            class="stat-number"
+                            id="dashboardAideCount">
+
+                            4
+
+                        </div>
+
+                        <div class="stat-label">
+                            Teacher Aides
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Classes -->
+
+                <div class="dashboard-stat-card">
+
+                    <div class="stat-icon">
+                        🕮
+                    </div>
+
+                    <div>
+
+                        <div
+                            class="stat-number"
+                            id="dashboardClassCount">
+
+                            3
+
+                        </div>
+
+                        <div class="stat-label">
+                            Manageable Classes
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Assignments -->
+
+                <div class="dashboard-stat-card">
+
+                    <div class="stat-icon">
+                         ★
+                    </div>
+
+                    <div>
+
+                        <div
+                            class="stat-number"
+                            id="dashboardAssignedCount">
+
+                            0
+
+                        </div>
+
+                        <div class="stat-label">
+                            Active Assignments
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Available -->
+
+                <div class="dashboard-stat-card">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <div
+                            class="stat-number"
+                            id="dashboardAvailableCount">
+
+                            4
+
+                        </div>
+
+                        <div class="stat-label">
+                            Available Aides
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- QUICK ACTIONS   -->
+
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Quick Actions
+                        </h2>
+
+                        <p>
+                            Commonly used system functions
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quick-action-grid">
+
+
+                    <button
+                        class="quick-action"
+                        onclick="showTimetablePage()">
+
+                        <span class="quick-action-icon">
+                            🗓
+                        </span>
+
+                        <span>
+
+                            <b>
+                                Open Timetable
+                            </b>
+
+                            <small>
+                                View and manage the general timetable
+                            </small>
+
+                        </span>
+
+                    </button>
+
+
+
+                    <button
+                        class="quick-action"
+                        onclick="openSearchFromHome()">
+
+                        <span class="quick-action-icon">
+                            ⌕
+                        </span>
+
+                        <span>
+
+                            <b>
+                                Search Schedule
+                            </b>
+
+                            <small>
+                                Find aides by day and period
+                            </small>
+
+                        </span>
+
+                    </button>
+
+
+
+                    <button
+                        class="quick-action"
+                        onclick="openTeacherAideDirectory()">
+
+                        <span class="quick-action-icon">
+                            𐀪𐀪𐀪
+                        </span>
+
+                        <span>
+
+                            <b>
+                                Teacher Aides
+                            </b>
+
+                            <small>
+                                View current aide assignments
+                            </small>
+
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- CURRENT ASSIGNMENTS    -->
+
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Current Assignments
+                        </h2>
+
+                        <p>
+                            Teacher aides currently assigned to classes
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="dashboardAssignments"
+                    class="dashboard-assignments">
+
+                </div>
+
+            </section>
+
+
+
+
+            <!-- DATABASE INFORMATION   -->
+
+
+            <section class="dashboard-information">
+
+                <div class="database-icon">
+                    🗄
+                </div>
+
+                <div>
+
+                    <h3>
+                        Local Database Storage
+                    </h3>
+
+                    <p>
+                        Your teacher aide assignments are automatically
+                        saved in this browser. They will remain available
+                        when you refresh the page.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+</div>
+	
+	<div id="timetablePage" class="timetable-page">
+
+    <button
+        class="home-button"
+        onclick="showHomePage()">
+        合 Home
+    </button>
+	
+	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsyuD73X55qKJdLes6YZ2DcglGLD0SLYFzrUNZ9YA4tMjWEnB3NKBYub82&s=10" alt="westland high school logo" class="center-block">
+	
+    <h1 class="centered-text"><u>General Teacher aide time table</u></h1>
+	
+	<button onclick="printTimetable()">
+    ️ Print Timetable
+    </button>
+	
+	<button onclick="openTeacherAideSearchModal()">
+	 Search Teacher Aide Schedule
+	</button>
+
+    <table id="timetable">
+        <!-- Header Row: Days of the week -->
+        <tr>
+            <th>Period / Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+        </tr>
+
+        <!-- Row 1: Whanau -->
+        <tr>
+            <td class="day-column">Period 1<br></td>
+			
+            <td>
+                <a href="#" class="modal-link" onclick="openModal(); return false;">
+                   Whanau
+                </a>
+                <br>
+                <small>8:45 - 9:00</small>
+            </td>
+			
+            <td>Whanau<br><small>8:45 - 9:00</small></td>
+            <td>Class<br><small>8:45 - 9:45</small></td>
+            <td>Whanau<br><small>8:45 - 9:00</small></td>
+            <td>Whanau<br><small>8:45 - 9:00</small></td>
+        </tr>
+
+        <!-- Row 2: Period 1 -->
+        <tr>
+            <td class="day-column">Period 2<br></td>
+            <td>Class<br><small>9:00 - 10:00</small></td>
+            <td>Class<br><small>9:00 - 10:00</small></td>
+            <td>Class<br><small>9:45 - 10:45</small></td>
+            <td>Class<br><small>9:00 - 10:00</small></td>
+            <td>Class<br><small>9:00 - 10:00</small></td>
+        </tr>
+
+        <!-- Row 3: Period 2 -->
+        <tr>
+            <td class="day-column">Period 3<br></td>
+            <td>Class<br><small>10:00 - 11:00</small></td>
+            <td>Class<br><small>10:00 - 11:00</small></td>
+            <td>Assembly/Hapu meet<br><small>10:45 - 11:15</td>
+            <td>Class<br><small>10:00 - 11:00</small></td>
+            <td>Class<br><small>10:00 - 11:00</small></td>
+        </tr>
+
+        <!-- Recess/Break using colspan to put across all days -->
+        <tr>
+            <td class="day-column">Interval<br></td>
+            <td colspan="5" style="background-color: #e3f2fd; font-weight: bold; tracking-spacing: 2px;">Interval<br><small></td>
+        </tr>
+
+        <!-- Row 4: Period 3 -->
+        <tr>
+            <td class="day-column">Period 4<br></td>
+            <td>Class<br><small>11:20 - 12:20</small></td>
+            <td>Class<br><small>11:20 - 12:20</small></td>
+            <td>Class<br><small>11:35 - 12:30</small></td>
+            <td>Class<br><small>11:20 - 12:20</small></td>
+            <td>Class<br><small>11:20 - 12:20</small></td>
+        </tr>
+
+        <!-- Row 5: Period 4 -->
+        <tr>
+            <td class="day-column">Period 5<br></td>
+            <td>Class<br><small>12:20 - 13:20</small></td>
+            <td>Class<br><small>12:20 - 13:20</small></td>
+            <td>Class<br><small>12:30 - 13:20</small></td>
+            <td>Class<br><small>12:20 - 13:20</small></td>
+            <td>Class<br><small>12:20 - 13:20</small></td>
+        </tr>
+
+        <!-- Lunch Break use same colspan as interval line -->
+        <tr>
+            <td class="day-column">Lunch<br></td>
+            <td colspan="5" style="background-color: #e8f5e9; font-weight: bold;">LUNCH BREAK<br><small></td>
+        </tr>
+
+        <!-- Row 6: Period 5 -->
+        <tr>
+            <td class="day-column">Period 6<br></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+            <td>Class<br><small>14:00 - 15:00</small></td>
+        </tr>
+    </table>
+    </div>
+	
+<!-- =================================================================================================================== -->
+	
+	<!-- Modal that opens list of classes with teachers -->
+<div id="whanauModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <h2>Whānau Classes</h2>
+		
+		<button onclick="printWhanauModal()">
+    ️     Print Whānau Classes
+        </button>
+		
+		<table>
+		
+		<!-- table with all whanau classes and teachers and room locations -->
+		    <tr>
+			<!-- Header row: all hapus in school -->
+			    <th style="background-color: #F2F2F2;">Hau</th>
+				
+				<th style="background-color: #D8F0D8;">Papatūānuku</th>
+				
+				<th style="background-color: #C9DEF5;">Wai</th>
+				
+				<th colspan="2" style="background-color: #E8AEAE;">Ahi</th>
+				
+			</tr>
+			
+			<tr>
+			<!-- year 13 all same room so make one continuous row -->
+			    <td colspan="5" style="background-color: #FFFBE8; font-weight: bold;">Year 13<br><small>TT Rm</small><br><small>Lynda Shanks</small></td>
+				
+			</tr>
+			
+			<!-- year 12 all whanau classes plus mentor classes -->
+			<tr>
+			
+			    <td class="clickable-whanau"
+				    style="background-color: #F2F2F2;"
+					onclick="openClassModal('12WHAU')">
+					
+				    <b>
+					    12WHAU
+					   <span id="star-12WHAU" class="scheduled-star"></span>
+					</b><br>
+					
+					<span id="aide-12WHAU"></span><br>
+					
+					<small>Music Rm</small><br>
+					<small>Michelle Hetherington</small>
+					
+				</td>
+				
+				<td style="background-color: #D8F0D8;"><b>12WPAPA</b><br><small>Rm 6</small><br><small>Siobhan O'Malley</small></td>
+				
+				<td style="background-color: #C9DEF5;"><b>12WWAI</b><br><small>Music Rm</small><br><small>Michelle Hetherington</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>12WAHI</b><br><small>Art Room</small><br><small>Philippa Mallinson</small></td>
+				
+				<td style="background-color: #FFFBE8;"><b>Mentors</b><br><small>Guidance Rm</small><br><small>Fiona Lauder</small></td>
+				
+			</tr>
+			
+			<!-- yr 11 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>11WHAU</b><br><small>Textiles Rm</small><br><small>Maryke Diplock</small></td>
+				
+				<td class="clickable-whanau"
+				    style="background-color: #D8F0D8;"
+					onclick="openClassModal('11WPAPA')">
+					
+					<b>
+					    11WPAPA
+						<span id="star-11WPAPA" class="scheduled-star"></span>
+					</b><br>
+					
+					<span id="aide-11WPAPA"></span><br>
+					
+					<small>Rm 7</small><br>
+					<small>Paolo Quilala</small>
+					
+				</td>
+				
+				<td style="background-color: #C9DEF5;"><b>11WWAI</b><br><small>Rm 9</small><br><small>Chris Collins</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>11WAHI</b><br><small>OE Rm</small><br><small>Mike Talbot</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+			<!-- yr 10 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>10WHAU</b><br><small>Rm 13</small><br><small>Vikashni Ram</small></td>
+				
+				<td style="background-color: #D8F0D8;"><b>10WPAPA</b><br><small>Rm 1</small><br><small>Janice Sadler</small></td>
+				
+				<td class="clickable-whanau"
+				    style="background-color: #C9DEF5;"
+					onclick="openClassModal('10WWAI')">
+					
+				    <b>
+					    10WWAI
+						<span id="star-10WWAI" class="scheduled-star"></span>
+					</b><br>
+					
+					<span id="aide-10WWAI"></span><br>
+					
+					<small>Rm 10</small><br>
+					<small>Johan Minaar</small>
+					
+				</td>
+				
+				<td style="background-color: #E8AEAE;"><b>10WAHI</b><br><small>Library</small><br><small>Kristy Veale</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+			<!-- yr 9 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>9WHAU</b><br><small>CW Rm</small><br><small>Vanessa Pringle</small></td>
+				
+				<td style="background-color: #D8F0D8;"><b>9WPAPA</b><br><small>GR Rm</small><br><small>Mohinesh Ram</small></td>
+				
+				<td style="background-color: #C9DEF5;"><b>9WWAI</b><br><small>Rm 5</small><br><small>Anna Pinkerton</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>9WAHI</b><br><small>Rm 4</small><br><small>Mariska Minaar</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+			<!-- yr 8 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>8WHAU</b><br><small>Rm 3</small><br><small>Shalendra Dutt</small></td>
+				
+				<td style="background-color: #D8F0D8;"><b>8WPAPA</b><br><small>Rm 12</small><br><small>Sonica Hilson</small></td>
+				
+				<td style="background-color: #C9DEF5;"><b>8WWAI</b><br><small>GW</small><br><small>Ben Tapper</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>8WAHI</b><br><small>Rm 15</small><br><small>Rachel Wastney</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+			<!-- yr 7 all whanau classes plus te reo -->
+			<tr>
+			    <td style="background-color: #F2F2F2;"><b>7WHAU</b><br><small>Rm 8</small><br><small>Gus Smith</small></td>
+				
+				<td style="background-color: #D8F0D8;"><b>7WPAPA</b><br><small>Rm 2</small><br><small>Kate Veale</small></td>
+				
+				<td style="background-color: #C9DEF5;"><b>7WWAI</b><br><small>Rm 14</small><br><small>Arleen Evasco</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>7WAHI</b><br><small>Rm 22</small><br><small>Brooke Parker</small></td>
+				
+				<td style="background-color: #E8AEAE;"><b>Whānau Te Reo</b><br><small>Whare/Rm 11</small><br><small>Whaea C Christine Weepu & Mike Waller</small></td>
+				
+			</tr>
+			
+		</table>
+
+        
+    </div>
+</div>
+
+<!-- modal with class information after clicking on whanau class name -->
+
+<div id="classModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeClassModal()">&times;</span>
+
+        <h2 id="classTitle"></h2>
+		
+		<button onclick="printClassModal()">
+          Print Class
+        </button>
+
+        <div id="classAideDisplay"></div>
+
+        <div id="classContent">
+            Extra information goes here.<br>
+			blah blah blahh
+        </div>
+
+    </div>
+
+</div>
+<!-- modal inside of class modal where you can actaully click to schedule a teacher aide for class -->
+<div id="teacherAideModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeTeacherAideModal()">&times;</span>
+
+        <h2>Schedule Teacher Aide</h2>
+		
+		<button onclick="printTeacherAideModal()">
+         Print Teacher Aide Schedule
+        </button>
+
+        <p>
+            Select a teacher aide to schedule for:
+            <b id="teacherAideClassName"></b>
+        </p>
+
+        <div class="teacher-aide-list">
+
+            <button class="teacher-aide-button"
+                    onclick="scheduleTeacherAide('Teacher Aide 1')"
+                    style="background-color: #FFD1E4;">
+
+                <b>Teacher Aide 1</b>
+
+                <div id="schedule-Teacher-Aide-1"></div>
+
+            </button>
+
+            <button class="teacher-aide-button"
+                    onclick="scheduleTeacherAide('Teacher Aide 2')"
+                    style="background-color: #FFE8D1;">
+
+                <b>Teacher Aide 2</b>
+
+                <div id="schedule-Teacher-Aide-2"></div>
+
+            </button>
+
+
+            <button class="teacher-aide-button"
+                    onclick="scheduleTeacherAide('Teacher Aide 3')"
+                    style="background-color: #FFFDD1;">
+
+                <b>Teacher Aide 3</b>
+
+                <div id="schedule-Teacher-Aide-3"></div>
+
+            </button>
+
+
+            <button class="teacher-aide-button"
+                    onclick="scheduleTeacherAide('Teacher Aide 4')"
+                    style="background-color: #D1FFF4;">
+
+                <b>Teacher Aide 4</b>
+
+                <div id="schedule-Teacher-Aide-4"></div>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- teacher aide search modal window to search for an aide on a certain day or time -->
+<div id="teacherAideSearchModal" class="modal">
+
+    <div class="modal-content search-modal-content">
+
+        <span class="close" onclick="closeTeacherAideSearchModal()">
+            &times;
+        </span>
+
+        <h2>Search Teacher Aide Schedule</h2>
+
+        <p>
+            Select a day and period to see which teacher aides are
+            scheduled and which ones are available.
+        </p>
+
+        <div class="search-controls">
+
+            <div class="search-field">
+                <label for="searchDay">
+                    <b>Day:</b>
+                </label>
+
+                <select id="searchDay">
+                    <option value="">Select a day</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                </select>
+            </div>
+
+
+            <div class="search-field">
+                <label for="searchPeriod">
+                    <b>Period:</b>
+                </label>
+
+                <select id="searchPeriod">
+                    <option value="">Select a period</option>
+                    <option value="Period 1">Period 1</option>
+                    <option value="Period 2">Period 2</option>
+                    <option value="Period 3">Period 3</option>
+                    <option value="Period 4">Period 4</option>
+                    <option value="Period 5">Period 5</option>
+                    <option value="Period 6">Period 6</option>
+                </select>
+            </div>
+
+            <button
+                class="search-button"
+                onclick="searchTeacherAideSchedule()">
+                Search
+            </button>
+
+        </div>
+
+
+        <div id="teacherAideSearchResults">
+
+            <p>
+                Select a day and period, then click Search.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- teacher aide dictionary modal where you can see the current assignments of the teacher aides where they are scheduled-->
+
+<div id="teacherAideDirectoryModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close"
+            onclick="closeTeacherAideDirectory()">
+            &times;
+        </span>
+
+        <h2>Teacher Aide Directory</h2>
+
+        <p>
+            Current teacher aide assignments.
+        </p>
+
+        <div id="teacherAideDirectoryContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- system information modal that gives information on what the current system of the website is and how it is working      -->
+
+<div id="systemInformationModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close"
+            onclick="closeSystemInformation()">
+            &times;
+        </span>
+
+        <h2>Teacher Aide Management System</h2>
+
+        <p>
+            This system is designed to manage teacher aide
+            timetables and classroom assignments.
+        </p>
+
+        <h3>General Timetable</h3>
+
+        <p>
+            The General Timetable allows you to view the
+            teacher aide timetable and access information
+            about individual classes.
+        </p>
+
+        <h3>Teacher Aide Scheduling</h3>
+
+        <p>
+            Teacher aides can be assigned to classes through
+            the class information window.
+        </p>
+
+        <h3>Schedule Search</h3>
+
+        <p>
+            The Teacher Aide Search allows you to search
+            by day and period to see which teacher aides
+            are scheduled and which aides are available.
+        </p>
+
+        <h3>Important</h3>
+
+        <p>
+            Current schedule information is stored while
+            the webpage is open. Refreshing the webpage
+            will keep the current teacher aide assignments.
+        </p>
+
+    </div>
+
+</div>
+</body>
+</html>

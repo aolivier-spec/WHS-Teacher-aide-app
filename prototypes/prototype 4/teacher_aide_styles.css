@@ -1,0 +1,1304 @@
+<style>
+/* Make directory and information modals appear above the page */
+
+#teacherAideDirectoryModal,
+#systemInformationModal {
+
+    z-index: 3000;
+
+}
+	    /* main window that shows general time table */
+		
+		html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            box-sizing: border-box;
+        }
+
+        #timetable {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            box-sizing: border-box;
+        }
+		
+        table {
+            width: 100%;
+			max-width: none;
+            border-collapse: collapse;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+		
+        th, td {
+            border: 1px solid #111;
+            padding: 12px;
+        } 
+		
+        th {
+            background-color: #f2f2f2;
+        }
+		
+        .day-column {
+            font-weight: bold;
+            background-color: #fafafa;
+        }
+		
+		.centered-text {
+		    text-align: center;
+		}
+		
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+		
+		/* class modal that shows all classes in a certain period */
+        #classModal{
+            z-index: 2000;
+        }
+
+        .clickable-whanau{
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+		/* underline chosen class to show exactly what class is being hovered over */
+        .clickable-whanau:hover{
+            filter: brightness(90%);
+            text-decoration: underline;
+        }
+        
+		.modal-content {
+            background: white;
+            width: 90%;
+            max-width: 900px;
+            max-height: 80vh;
+            overflow-y: auto;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            box-sizing: border-box;
+        }
+		
+       
+        
+		/* close button of modal window */
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-link {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+			transition: color 0.2s ease;
+        }
+		
+		/* changing link colour to make it easier to see when selecting a class */
+		.modal-link:hover {
+		    color: blue !important;
+			text-decoration: underline !important;
+		}
+		
+		.center-block {
+            display: block;    
+            margin-left: auto;  
+            margin-right: auto;
+            width: 20%;         
+        }
+		
+		/* teacher aide modal for scheduling a teacher aide to a certain class */
+        #teacherAideModal {
+            z-index: 3000;
+        }
+
+        .teacher-aide-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .teacher-aide-button {
+            padding: 10px 15px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .teacher-aide-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .scheduled-star {
+           color: #F5C22F;
+           font-size: 18px;
+           margin-left: 4px;
+        }
+		
+		.class-modal-aide {
+           margin-top: -10px;
+           margin-bottom: 15px;
+           font-size: 16px;
+        }
+
+        .class-modal-aide-name {
+           font-weight: bold;
+        }
+		
+    /* printing any page of the website */
+        @media print {
+
+    /* Hide everything by default */
+        body * {
+            visibility: hidden;
+           }
+
+    /* Only show the element we are printing */
+    .print-area,
+    .print-area * {
+        visibility: visible;
+    }
+
+    /* Position the thing being printed at the top of the page */
+    .print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+        box-shadow: none;
+    }
+
+    /* Hide the close buttons when printing */
+    .print-area .close {
+        display: none;
+    }
+
+    /* Make modal backgrounds disappear when printing */
+    .modal {
+        background: none;
+    }
+	
+}
+
+
+/* Teacher Aide Search modal window */
+
+
+.search-modal-content {
+    max-width: 900px;
+}
+
+
+.search-controls {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* Individual search field */
+
+.search-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+/* Search dropdowns that show days and periods */
+
+.search-field select {
+    padding: 8px 10px;
+    font-size: 16px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    background-color: white;
+    min-width: 160px;
+}
+
+
+/* Search button */
+
+.search-button {
+    padding: 9px 18px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+/* Search button hover changing colour */
+
+.search-button:hover {
+    background-color: #e0e0e0;
+}
+
+
+/* Individual search result */
+
+.search-result {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #fafafa;
+}
+
+
+/* Teacher aide name in search result */
+
+.search-result-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+
+/* Available teacher aides */
+
+.available-aide {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    background-color: #e3f2fd;
+    font-weight: bold;
+}
+
+
+/* Warning message */
+
+.search-warning {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #fff3cd;
+    font-weight: bold;
+}
+
+
+
+/* the main css of the home page  */
+
+/* Homepage background */
+
+.home-page {
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+    padding: 40px 20px;
+
+    background-color: #f2f4f7;
+
+}
+
+
+/* Main homepage container */
+
+.home-container {
+
+    width: 100%;
+
+    max-width: 1000px;
+
+    text-align: center;
+
+}
+
+
+/* Main title */
+
+.home-title {
+
+    font-size: 42px;
+
+    margin-bottom: 10px;
+
+    color: #222;
+
+}
+
+
+/* Subtitle */
+
+.home-subtitle {
+
+    font-size: 24px;
+
+    margin-top: 0;
+
+    margin-bottom: 10px;
+
+    color: #444;
+
+}
+
+
+/* Description */
+
+.home-description {
+
+    font-size: 17px;
+
+    color: #666;
+
+    margin-bottom: 35px;
+
+}
+
+
+/* Homepage grid */
+
+.home-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(250px, 1fr));
+
+    gap: 25px;
+
+    width: 100%;
+
+}
+
+
+/* Homepage cards */
+
+.home-card {
+
+    min-height: 220px;
+
+    padding: 30px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 12px;
+
+    background-color: white;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        background-color 0.2s;
+
+}
+
+
+/* Homepage card hover */
+
+.home-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.15);
+
+    background-color: #F5F6FF;
+
+}
+
+
+/* Card icons */
+
+.home-card-icon {
+
+    font-size: 45px;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* Card titles */
+
+.home-card-title {
+
+    font-size: 23px;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+
+    color: #222;
+
+}
+
+
+/* Card descriptions */
+
+.home-card-description {
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+    color: #666;
+
+}
+
+
+
+/* Home button on timetable */
+
+.home-button {
+
+    padding: 10px 18px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #888;
+
+    border-radius: 5px;
+
+    background-color: white;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+}
+
+
+/* Home button hover */
+
+.home-button:hover {
+
+    background-color: #e8e8e8;
+
+}
+
+/* teacher aide dictionary css */
+
+/* Individual teacher aide */
+
+.directory-aide {
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    padding: 15px;
+
+    margin-top: 15px;
+
+    background-color: #F5F6FF;
+
+}
+
+
+/* Teacher aide name */
+
+.directory-aide-name {
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* Assignment heading */
+
+.directory-assignment-title {
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+
+}
+
+
+/* Individual assignment */
+
+.directory-assignment {
+
+    padding: 8px;
+
+    margin-top: 6px;
+
+    border-left: 4px solid #aaa;
+
+    background-color: white;
+
+}
+
+
+/* Available teacher aide */
+
+.directory-available {
+
+    padding: 8px;
+
+    font-weight: bold;
+
+}
+
+
+
+/* the responsive homepage for the user to see and use  */
+
+/* Smaller screens */
+
+@media (max-width: 700px) {
+
+    .home-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .home-title {
+
+        font-size: 32px;
+
+    }
+
+
+    .home-subtitle {
+
+        font-size: 20px;
+
+    }
+
+}
+
+
+/* Main dashboard */
+
+.dashboard-layout {
+
+    display: flex;
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    background-color: #f4f6f8;
+
+}
+
+
+
+/* the sidebar on the homepage with different icons and functions */
+
+.dashboard-sidebar {
+
+    width: 250px;
+
+    min-width: 250px;
+
+    min-height: 100vh;
+
+    background-color: #202733;
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+}
+
+
+/* Sidebar header */
+
+.sidebar-header {
+
+    padding: 25px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border-bottom: 1px solid #39424f;
+
+}
+
+
+/* Sidebar logo */
+
+.sidebar-logo {
+
+    font-size: 35px;
+
+}
+
+
+/* Sidebar title */
+
+.sidebar-title {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    line-height: 1.2;
+
+}
+
+
+/* Sidebar menu */
+
+.sidebar-menu {
+
+    padding: 20px 12px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+/* Sidebar buttons */
+
+.sidebar-button {
+
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background-color: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 15px;
+
+    text-align: left;
+
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
+
+}
+
+
+/* Sidebar hover */
+
+.sidebar-button:hover {
+
+    background-color: #343e4d;
+
+    transform: translateX(3px);
+
+}
+
+
+/* Active sidebar button */
+
+.sidebar-button.active {
+
+    background-color: #3d4858;
+
+}
+
+
+/* Sidebar footer */
+
+.sidebar-footer {
+
+    margin-top: auto;
+
+    padding: 20px;
+
+    border-top: 1px solid #39424f;
+
+    color: #bfc5cc;
+
+}
+
+
+/* System status */
+
+.system-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 8px;
+
+    color: white;
+
+}
+
+
+/* Green status dot */
+
+.status-dot {
+
+    width: 9px;
+
+    height: 9px;
+
+    border-radius: 50%;
+
+    background-color: #39b54a;
+
+    display: inline-block;
+
+}
+
+
+
+/* the main dashboard with most of the functions and windows for use*/
+
+.dashboard-main {
+
+    flex: 1;
+
+    padding: 35px;
+
+    box-sizing: border-box;
+
+    overflow-y: auto;
+
+}
+
+
+/* Dashboard header */
+
+.dashboard-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.dashboard-header h1 {
+
+    margin: 0;
+
+    font-size: 32px;
+
+}
+
+
+.dashboard-header p {
+
+    margin: 5px 0 0 0;
+
+    color: #6b7280;
+
+}
+
+
+.dashboard-date {
+
+    padding: 10px 15px;
+
+    background-color: white;
+
+    border: 1px solid #ddd;
+
+    border-radius: 7px;
+
+    color: #555;
+
+}
+
+
+
+/* stat cards of what everything is happening at the moment e.g. how many teacher aides are available that havent been scheduled */
+
+
+.dashboard-stat-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(160px, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.dashboard-stat-card {
+
+    background-color: white;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.05);
+
+}
+
+
+.stat-icon {
+
+    font-size: 32px;
+
+}
+
+
+.stat-number {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #222;
+
+}
+
+
+.stat-label {
+
+    color: #777;
+
+    font-size: 14px;
+
+}
+
+
+
+/* css for sectioning the dashboard */
+
+
+.dashboard-section {
+
+    background-color: white;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+
+}
+
+
+.section-heading h2 {
+
+    margin: 0;
+
+    font-size: 21px;
+
+}
+
+
+.section-heading p {
+
+    margin: 5px 0 0 0;
+
+    color: #777;
+
+}
+
+/* the quick ation grid that will quickly take you to actions instead of searching for them on the menu */
+
+
+.quick-action-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.quick-action {
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    background-color: #fafafa;
+
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+
+}
+
+
+.quick-action:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.1);
+
+}
+
+
+.quick-action-icon {
+
+    font-size: 30px;
+
+}
+
+
+.quick-action b {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+}
+
+
+.quick-action small {
+
+    display: block;
+
+    color: #777;
+
+}
+
+
+
+/* current assignments active for teacher aides, where they are currently and actively scheduled*/
+
+
+.dashboard-assignments {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+.dashboard-assignment {
+
+    border: 1px solid #ddd;
+
+    border-radius: 7px;
+
+    padding: 15px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background-color: #fafafa;
+
+}
+
+
+.dashboard-assignment-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.dashboard-assignment-icon {
+
+    font-size: 25px;
+
+}
+
+
+.dashboard-assignment-class {
+
+    font-weight: bold;
+
+    font-size: 16px;
+
+}
+
+
+.dashboard-assignment-aide {
+
+    color: #555;
+
+    margin-top: 3px;
+
+}
+
+
+.dashboard-assignment-time {
+
+    text-align: right;
+
+    color: #666;
+
+    font-size: 14px;
+
+}
+
+
+/* Empty assignment message */
+
+.dashboard-no-assignments {
+
+    padding: 30px;
+
+    text-align: center;
+
+    color: #777;
+
+    border: 1px dashed #ccc;
+
+    border-radius: 7px;
+
+}
+
+
+/* the databse information window css  */
+
+
+.dashboard-information {
+
+    background-color: white;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+.database-icon {
+
+    font-size: 35px;
+
+}
+
+
+.dashboard-information h3 {
+
+    margin: 0 0 5px 0;
+
+}
+
+
+.dashboard-information p {
+
+    margin: 0;
+
+    color: #666;
+
+    line-height: 1.5;
+
+}
+
+
+/* css for the responsive dashboard to function and look good  */
+
+
+@media (max-width: 1000px) {
+
+    .dashboard-stat-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .quick-action-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .dashboard-layout {
+
+        flex-direction: column;
+
+    }
+
+
+    .dashboard-sidebar {
+
+        width: 100%;
+
+        min-width: 0;
+
+        min-height: auto;
+
+    }
+
+
+    .sidebar-menu {
+
+        flex-direction: row;
+
+        overflow-x: auto;
+
+    }
+
+
+    .sidebar-button {
+
+        min-width: max-content;
+
+    }
+
+
+    .sidebar-footer {
+
+        display: none;
+
+    }
+
+
+    .dashboard-main {
+
+        padding: 20px;
+
+    }
+
+
+    .dashboard-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+    }
+
+
+    .dashboard-stat-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+		
+    </style>
